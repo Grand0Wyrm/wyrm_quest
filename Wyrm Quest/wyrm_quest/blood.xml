@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+    <include id="lang.xml"/>
+
+     <player id="player.ancient" extends="player.ancient"> <slot id="blood" priority='-2'/> </player>
+	 <procedure id="remove_blood">
+		<window type="prompt" eval="'warning.remove_blood{item:[item='+this.id+']}'"><action>player.equipment.forceEquip(this.xml.get("slot"), player)</action></window>
+	</procedure>
+	
+   <item id="wyrmic_blood" icon="dragonblood.ico" colorScale="3" type="potion" slot="blood" weight="0" unequip="false" capabicity="30">
+   		<action id="use" name="common.remove" closeWindow="false"><run procedure="remove_blood" /></action>
+        <onEquip><action>player.stats.get("health").add(20);</action></onEquip>
+    		<onUnequip><action>player.stats.get("health").add(-20)</action></onUnequip>
+    </item>
+
+	    <tile id="rad_blood.ico" sheet="items.png" x="4" />
+   <item id="rad_blood" icon="rad_blood.ico" type="potion" slot="blood" weight="0" unequip="false">
+   		<action id="use" name="common.remove" closeWindow="false"><run procedure="remove_blood" /></action>
+		<equipCost storage="power" cost="-30" health="2" />
+
+    </item>
+
+		    <tile id="crystal_blood.ico" sheet="items.png" x="8" />
+   <item id="crystal_blood" icon="crystal_blood.ico" type="potion" slot="blood" weight="0" unequip="false">
+   		<action id="use" name="common.remove" closeWindow="false"><run procedure="remove_blood" /></action>
+		<light tile="light.medium" color="FF92FF" flicker="true" />
+        <onEquip><action>player.stats.get("speed").add(2);</action></onEquip>
+    		<onUnequip><action>player.stats.get("speed").add(-2)</action></onUnequip>
+    </item>
+
+	
+
+	<item id="human_blood" icon="blood.ico" type="potion" slot="blood" weight="0" unequip="false">
+   		<action id="use" name="common.remove" closeWindow="false"><run procedure="remove_blood" /></action>
+
+
+    </item>
+
+
+	<recipe id="wyrmic_blood" creates="wyrmic_blood" type="blood_transfusion" sfx="wyrm_attack">
+		<item id="dragonblood" count="4" />
+		<item id="blood_shard" count="4"/>
+	</recipe>
+
+	<recipe id="human_blood" creates="human_blood" type="blood_transfusion" sfx="wyrm_attack">
+		<item id="blood_shard" count="4"/>
+	</recipe>
+
+	<recipe id="rad_blood" creates="rad_blood" type="blood_transfusion" sfx="wyrm_attack">
+		<item id="dragonblood" count="6" />
+		<item id="uranium" count="9" />
+		<item id="liquid_coolant" count="4"/>
+		<item id="blood_shard" count="4"/>
+	</recipe>
+
+	<recipe id="crystal_blood" creates="crystal_blood" type="blood_transfusion" sfx="wyrm_attack">
+		<item id="dragonblood" count="6" />
+		<item id="alter_gem" count="9" />
+		<item id="amethyst_particles" count="4"/>
+		<item id="blood_shard" count="4"/>
+	</recipe>
+
+
+
+
+	<animation id="mutation_cocoon.idle" count="9"/>
+	<structure id="mutation_cocoon" image="mutation_cocoon.png" width="76" height="46" behind="true" type="equipment" title="structure.tooltip.operate_self">
+		<tooltip id="operate"/>
+		<equipment type="blood_transfusion"/>
+
+		<operate>
+			<section if="player.info.id != 'player.ancient' && !getFlag('furry_wyrm')">
+				<dialogue section="warning" id="blood_transfusion_inhuman" />
+				<window type="craft" includeStorehouse="true" title="structure.tooltip.operate">
+					<listItem icon="blood.ico" title="structure.change_appearance">
+						<window type="character" title="structure.change_appearance" />
+					</listItem>
+					<recipe type="operation_recipes"/>
+				</window><stop />
+			</section>
+		</operate>
+	</structure>
+
+
+
+</data>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+
+	<animation id="queen_cocoon.idle" count="9" />
+	<structure id="queen_cocoon" width="76" height="46" image="queen_cocoon.png"/>
+
+	<recipe id="bones2blood" creates="dragonblood" type="lab">
+		<item id="wyrm_bone" count="3"/>
+	</recipe>
+
+	<!--Recipe for stuff-->
+<recipe id="make_wyrm_armor" creates="wyrm_armor" type="enchantments">
+  <type id="lab" available="getFlag('alchemist.wyrm_armor')" />
+  <item id="wyrm_hide" count="6" />
+  <item id="steel_armor" count="1" />
+  <item id="dragonblood" count="3" />
+</recipe>
+
+</data>

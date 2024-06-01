@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+
+    <include id="items.xml"/>
+
+
+  <!--First Quest if the queen is still alive-->
+  <quest id="enemy_wyrm" giver="wyrmy2" exp="2500">
+    	<kill id="wyrm" name="quests.wyrms" count="15" />
+  </quest>
+  <!--Second Quest if the queen is still alive-->
+  <quest id="resource_help" giver="wyrmy" exp="3000">
+    	<item id="coal" count="30"/>
+    	<item id="steak" count="60"/>
+  </quest>
+  <!-- First quest if the queen is dead -->
+  <quest id="trust_issues" giver="wyrmy" exp="2500">
+    <item id="coal" count="60" />
+    <item id="steak" count="125" />
+		<item id="evo_gem" count="1" hidden="true" />
+  </quest>
+  <!-- Wyrm translation spell book quest given by Alchemist-->
+  <quest id="talking_wyrm" giver="alchemist" exp="3000">
+    <item id="fish_scale" count="8" />
+		<item id="ink" count="8" />
+		<item id="dragonblood" count="8" />
+		<item id="spirit_gem" count="8" />
+  </quest>
+  <!-- Wyrm Armor -->
+  <quest id="wyrmic_armor" giver="alchemist" exp="7000">
+    <item id="dragonblood" count="6"/>
+    <item id="wyrm_hide" count="8"/>
+    </quest>
+<!-- Second Quest if the queen has been killed-->
+  <quest id="more_food" giver="wyrmy" exp="3000">
+    <item id="cow" count="6"/>
+    <item id="pig" count="4"/>
+  </quest>
+
+  <!-- Tile for the wise wyrm -->
+  <tile id="wyrmy" sheet="wyrmy.png" x="0" y="0" />
+	<animation id="wyrmy.idle" equals="single" />
+	<animation id="wyrmy.walk" count="6" x="0" y="0" />
+	<animation id="wyrmy.mine" count="5" x="2" y="1" />
+	<animation id="wyrmy.talk" count="5" x="2" y="1" />
+  <!-- Duplicate Tile cause wyrmy2 doesnt like to have the same tile as wyrmy -->
+  <tile id="wyrmy2" sheet="wyrmy.png" x="0" y="0" />
+	<animation id="wyrmy2.idle" equals="single" />
+	<animation id="wyrmy2.walk" count="6" x="0" y="0" />
+	<animation id="wyrmy2.talk" count="5" x="2" y="1" />
+
+<!-- Wise Wyrm in the wyrm hive NPC code-->
+      <npc id="wyrmy2" tile="wyrmy" action="talk" animation="wyrmy.talk" talk_sfx="wyrm_attack" speed="3" night="true" day="false">
+        		<idle class="wander"/>
+    <operate>
+  <section if="!player.hasQuest('enemy_wyrm')">
+      <dialogue section="wyrmy2" id="introduce1" speaker='this' />
+      <dialogue section="wyrmy2" id="introduce2" speaker='this' />
+      <dialogue section="wyrmy2" id="introduce3" speaker='this' />
+      <dialogue section="wyrmy2" id="introduce4" speaker='this' />
+      <quest id="enemy_wyrm" />
+  </section>
+  <choose if="!player.questComplete('enemy_wyrm')">
+      <section if="player.canCompleteQuest('enemy_wyrm')">
+          <dialogue section="wyrmy2" id="wyrm_slain1" speaker='this' />
+              <action>var totalguilt = player.getItemCount('guilt'); player.addItem("guilt", -totalguilt); </action>
+          <complete quest="enemy_wyrm" />
+          <dialogue section="wyrmy2" id="wyrm_slain2" speaker='this' />
+      </section>
+      <dialogue section="wyrmy2" id="wyrm_slain3" speaker='this' />
+  </choose>
+    <dialogue section="wyrmy2" id="greetings" speaker='this'/>
+
+    <section if="player.completedQuest('more_food') && !getFlag('queen_birth')">
+      <dialogue section="wyrmy2" id="reward" speaker='this'/>
+      <item id="cocoon_shell" count="3"/>
+      <action>setFlag('queen_birth', true)</action>
+    </section>
+
+</operate>
+  </npc>
+
+ <!-- Wise wyrm in magic1 NPC code-->
+      <npc id="wyrmy" tile="wyrmy" action="talk" animation="wyrmy.talk" mine="4" talk_sfx="wyrm_attack" speed="3" night="false">
+	     	<idle class="mineOre" maxWeight="15000">
+          <loot id="coal"/>
+          <loot id="focus_gem"/>
+      </idle>
+   <operate>
+  <!-- POV you didnt kill the queen and did the enemy_wyrm quest -->
+  <section if="player.questComplete('enemy_wyrm') && !player.hasQuest('resource_help')">
+      <dialogue section="wyrmy" id="resource_help1" speaker='this' />
+      <dialogue section="wyrmy" id="resource_help2" speaker='this' />
+      <quest id="resource_help" />
+  </section>
+  <choose if="!player.questComplete('resource_help')">
+      <section if="player.canCompleteQuest('resource_help')">
+          <dialogue section="wyrmy" id="resource_help3" speaker='this' />
+          <dialogue section="wyrmy" id="resource_help5" speaker='this' />
+          <dialogue section="wyrmy" id="trust_issues8" speaker='this' />
+
+          <complete quest="resource_help" />
+          <action>
+          var totalguilt = player.getItemCount('guilt'); player.addItem("guilt", -totalguilt); 
+          setFlag("hide", true);
+          </action>
+      </section>
+      <dialogue section="wyrmy" id="resource_help4" speaker='this' />
+  </choose>
+      <!-- POV you did kill the queen and also the Storm and are speaking to Wyrmy the first time after finding him in magic1 -->
+  <section if="!player.questComplete('enemy_wyrm') && !player.hasQuest('trust_issues')">
+      <dialogue section="wyrmy" id="trust_issues1" speaker='this' />
+      <dialogue section="wyrmy" id="trust_issues2" speaker='this' />
+      <dialogue section="wyrmy" id="trust_issues3" speaker='this' />
+      <dialogue section="wyrmy" id="trust_issues4" speaker='this' />
+      <quest id="trust_issues" ask="false"/>
+  </section>
+  <choose if="!player.questComplete('trust_issues')">
+      <section if="player.canCompleteQuest('trust_issues')">
+          <dialogue section="wyrmy" id="trust_issues5" speaker='this' />
+          <action>setFlag("hide", true);</action>
+          <complete quest="trust_issues" />
+          <dialogue section="wyrmy" id="trust_issues6" speaker='this' />
+          <dialogue section="wyrmy" id="trust_issues8" speaker='this' />
+      </section>
+      <dialogue section="wyrmy" id="trust_issues7" speaker='this' />
+  </choose>
+     <section if="player.questComplete('trust_issues') || player.questComplete('enemy_wyrm')">
+         <dialogue section="wyrmy2" id="greetings" speaker='this'/>
+       </section>
+<!-- Second Quest to revive the queen -->
+<section if="player.questComplete('trust_issues) && !player.hasQuest('more_food') && player.questComplete('talking_wyrm')">
+    <dialouge section="wyrmy" id="more_food1" speaker='this'/>
+    <dialouge section="wyrmy" id="more_food2" speaker='this'/>
+    <dialouge section="wyrmy" id="more_food3" speaker='this'/>
+    <quest id="more_food"/>
+</section>
+  <choose if="!player.questComplete('more_food')">
+      <section if="player.canCompleteQuest('more_food')">
+        <dialogue section="wyrmy" id="more_food4" speaker='this' />
+        <dialogue section="wyrmy" id="more_food5" speaker='this' />
+        <dialogue section="wyrmy" id="more_food6" speaker='this' />
+        <complete quest="more_food"/>
+      </section>
+      <dialouge section="wyrmy" id="more_food7" speaker='this'/>
+  </choose>
+
+</operate>
+  </npc>
+
+<!-- Friendly Wyrms the equally friendly Queen spawns -->
+  <enemy id="friendly_wyrm" tile="wyrm" health="8" defense="2" damage="6" type="wyrm" eatTile="dirt" trapped="wyrm" capture="6" kill_achievement="wyrm" trap_achievement="capture_wyrm" attack_sfx="wyrm_attack" friendly="true" friendlyFire="false" color="fffff">
+   <onDeath>
+     <invokeLater seconds="0.5">
+          <dialogue section="wyrmic" id="wyrm_death" if="getFlag('wyrmic')" />
+     </invokeLater>
+     <!-- You should get 500 for killing these innocent wyrms you monster, but im merciful so have 1 per each -->
+    <action>player.addItem("guilt", 1); </action>
+   </onDeath>
+   <onCapture>
+      <invokeLater seconds="1">
+        <dialogue section="wyrmic" id="wyrm_capture" if="getFlag('wyrmic')" />
+      </invokeLater>
+   </onCapture>
+    <loot id=""/><sound id="death" value="wyrm_death" />
+  </enemy>
+<!-- The Friendly Queens base code, also immortal cause familiars can otherwise kill her and ruin the entire mods progress and also because some murder happy players exist-->
+  <enemy id="friendly_queen" tile="wyrm_queen" health="888" range="5" defense="999" friendly="true" friendlyFire="false" type="surface" hitColor="ff6666" speed="0.25" passPlayer="true" passEnemies="true" kill_achievement="wyrm_queen" death_sfx="wyrm_queen_death" passFence="true" color="fffff">
+		<idle>
+			<section if="area.getLiveCount('friendly_wyrm')<7">
+				<sound id="wyrmqueen_spawn" /><play object="this" animation="spawn_begin" /><action>this.setVulnerable(888,999);</action>
+				<play object="this" animation="spawn_pre" /><set id="dx" value="this.getDX()" />
+				<object id="friendly_wyrm" x="dx == -1?this.tile_x+1:this.tile_right-1" y="this.tile_y">
+					this.renderer.setTile(this.tile_x+dx, this.tile_y, this.renderer.speed);
+				</object>
+				<play object="this" animation="spawn_post" /><action>this.endVulnerable();</action>
+			</section>
+			<action>this.run();</action><stop />
+		</idle>
+		<hitWall><action>this.flip(); this.run();</action><stop /></hitWall>
+	</enemy>
+
+
+<!-- Alchemist Doing their part in Wyrm Quest -->
+      <npc id="alchemist" extends="alchemist">
+        <operate>
+      <section if="player.questComplete('enemy_wyrm') && !player.hasQuest('talking_wyrm') && getFlag('heal_book')">
+          <dialogue section="alchemist" id="talking_wyrm1" speaker='this' />
+          <dialogue section="alchemist" id="talking_wyrm2" speaker='this' />
+          <dialogue section="alchemist" id="talking_wyrm3" speaker='this' />
+          <quest id="talking_wyrm"/>
+      </section>
+      <section if="player.questComplete('trust_issues') && !player.hasQuest('talking_wyrm') && getFlag('heal_book')">
+          <dialogue section="alchemist" id="talking_wyrm1" speaker='this' />
+          <dialogue section="alchemist" id="talking_wyrm2" speaker='this' />
+          <dialogue section="alchemist" id="talking_wyrm3" speaker='this' />
+          <quest id="talking_wyrm"/>
+      </section>   
+      <choose if="!player.questComplete('talking_wyrm')">
+          <section if="player.canCompleteQuest('talking_wyrm')">
+              <dialogue section="alchemist" id="talking_wyrm4" speaker='this' />
+                  <action>player.addItem("wyrmic_book", 1); setFlag("wyrmic", true);</action>
+              <complete quest="talking_wyrm" />
+          </section>
+          <dialogue section="alchemist" id="talking_wyrm5" speaker='this' />
+      </choose>
+
+      <section if="player.hasItemStorehouse('wyrm_hide') && !player.hasQuest('wyrmic_armor')">
+        <dialogue section="alchemist" id="wyrm_armor1" speaker='this' />
+        <dialogue section="alchemist" id="wyrm_armor2" speaker='this' />
+        <dialogue section="alchemist" id="wyrm_armor3" speaker='this' />
+        <dialogue section="alchemist" id="wyrm_armor4" speaker='this' />
+        <quest id="wyrmic_armor"/>
+      </section>
+      <choose if="!player.questComplete('wyrmic_armor') && player.hasQuest('wyrmic_armor')">
+        <section if="player.canCompleteQuest('wyrmic_armor')">
+          <dialogue section="alchemist" id="wyrm_armor6" speaker='this'/>
+          <dialogue section="alchemist" id="wyrm_armor7" speaker='this'/>
+          <dialogue section="alchemist" id="wyrm_armor8" speaker='this'/>
+          <dialogue section="alchemist" id="wyrm_armor9" speaker='this'/>
+          <action>setFlag('alchemist.wyrm_armor', true); player.addItem("wyrm_armor", 1); </action>
+          <complete quest="wyrmic_armor"/>
+        </section>
+          <dialogue section="alchemist" id="wyrm_armor5" speaker='this'/>
+      </choose>
+    </operate>
+      </npc>
+
+
+
+<!-- repeatable quests attempt no.1-->
+
+  <quest id="redemption" giver="wyrmy2" exp="0" >
+    <item id="coal" count="8" />
+    <item id="steak" count="8" />
+
+  </quest>
+  <recipe id="remove_guilt" creates="guilt" count="-4">
+  <type id="no_uncraft" />
+  <item id="steak" count="8"/>
+  <item id="coal" count="8"/>
+  </recipe>
+
+<npc id="wyrmy2" extends="wyrmy2">
+        <operate>
+				<group>
+					<section if="player.questComplete('enemy_wyrm')">
+						<dialogue section="wyrmy2" id="redemption1" speaker='this' />
+						<window type="craft" includeStorehouse="true"><recipe id="remove_guilt" /></window>
+					</section>
+				</group>
+
+
+
+       <!-- <section if="!player.hasQuest('redemption') && player.questComplet('enemy_wyrm')">
+            <dialogue section="wyrmy2" id="redemption1" speaker='this' />
+            <quest id="redemption" />
+        </section>
+        <section if="player.questComplete('redemption')">
+            <dialogue section="wyrmy2" id="redemption1" speaker='this' />
+            <quest id="redemption" />
+        </section>
+        <choose if="!player.questComplete('redemption')">
+            <section if="player.canCompleteQuest('redemption')">
+                <dialogue section="wyrmy2" id="redemption2" speaker='this' />
+                <complete quest="redemption" />
+                <item id="diamond" count="1"/>
+            </section>
+            <dialogue section="wyrmy2" id="redemption3" speaker='this' />
+        </choose> -->
+        </operate>
+<!--
+        <section if="player.questComplete('redemption') && totalguilt > 0">
+        <action>if var totalguilt > 0; </action>
+              <quest id="redemption" />
+        </section>
+    </operate>
+    -->
+</npc>
+
+
+</data>

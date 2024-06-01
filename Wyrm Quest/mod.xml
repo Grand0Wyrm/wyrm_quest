@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mod>
+    <name>Wyrm Quest</name>
+    <description>Wyrms Plus Reborn, Now with actual Content. Credits to @gigat2282 for beta testing.</description>
+    <author>Grand Wyrm</author>
+    <version>0.0.1</version>
+    <website>https://discord.gg/ZDyYpTE</website>
+    <requires>Full Version</requires>
+    <init>
+<!-- Hi people reading through the mod files, pls lemme know if i can change stuff to optimize it further.-->
+    <include id="wyrm_quest/areas.xml"/>
+    <include id="wyrm_quest/lang.xml"/>
+
+    <include id="wyrm_quest/enemies.xml"/>
+    <include id="wyrm_quest/structures.xml"/>
+    <include id="wyrm_quest/blood.xml"/>
+
+    </init>
+</mod>

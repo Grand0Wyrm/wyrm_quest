@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+
+<!-- Tile this Tilesheet that -->
+      <tile id="wyrm_hide.ico" sheet="items.png" x="0"/>
+      <tile id="cocoon_shell.ico" sheet="items.png" x="2"/>
+          <include id="wyrm_armor.xml" child="init"/>
+      <tile id="wyrm_armor.ico" sheet="items.png" x="1" />
+	    <tile id="wyrm_bone.ico" sheet="items.png" x="3" />
+	    <tile id="blood_shard.ico" sheet="items.png" x="5" />
+	    <tile id="amethyst_particles.ico" sheet="items.png" x="6" />
+	    <tile id="liquid_coolant.ico" sheet="items.png" x="7" />
+
+
+
+
+
+
+ <!-- FEEEL the guilt -->
+ <item id="guilt" weight="5" type="blueprint" icon="dragonblood.ico" canStore="false" showCount="false" droppable="false" hidden="false"/>
+
+ <!-- Wyrm Leather, the latest fashion -->
+ <item id="wyrm_hide" weight="3" type="potion" icon="wyrm_hide.ico" cost="260"/>
+
+<!-- The spellbook which saves me from typing wyrmys talking so weirdly -->
+  <item id="wyrmic_book" type="spellbook" behindPlayer="false" equip_anim="equipment.magic_book" cost="" weight="2" icon="spellbook.ico" animation="magic_book.ico" master_spellcaster="true" canModify="false" droppable="fallse"/>
+
+<!-- Wyrm Armor Tier 1 -->
+  <item id="wyrm_armor" type="equipment" cost="1800" slot="armor" defense="5" action="equip" weight="6" icon="wyrm_armor.ico" durability="2000" repair="wyrm_hide" equip_anim="equipment.steel_armor" >
+  	<description text="item.descriptions.boost_stat{stat:mine_speed}{value:3}" />
+    		<equipCost durability="-1" />
+    <onEquip><action>player.stats.get("mine_speed").add(3)</action></onEquip>
+		<onUnequip><action>player.stats.get("mine_speed").add(-3)</action></onUnequip>
+  </item>
+<!-- this is broken, using steel armor for now
+	<include id="wyrm_armor.xml" includeRoot="true" />
+     <tile id="wyrm_armor" sheet="wyrm_armor.png" x="1" />
+      <animation id="equipment.wyrm_armor.idle" x="1" count="1" length="4" />
+      <animation id="equipment.wyrm_armor.walk" x="10" count="12" />
+      <animation id="equipment.wyrm_armor.hit" x="1" count="4" />
+      <animation id="equipment.wyrm_armor.death" x="1" count="8" />
+-->
+
+
+  <!-- Quest Reward, Cocoon Shell-->
+  <item id="cocoon_shell" weight="7" type="potion" cost="1200" icon="cocoon_shell.ico"/>
+
+  <!-- Wyrm Bone Shards-->
+  <item id="wyrm_bone" weight="0.5" type="potion" costs="62" health="30" stamina="30" action="eat" icon="wyrm_bone.ico"/>
+
+<!-- Blood shards-->
+  <item id="blood_shard" weight="2" type="potion" costs="320" icon="blood_shard.ico"/>
+
+<!-- Amethyst Particles-->
+  <item id="amethyst_particles" weight="2" type="potion" costs="120" icon="amethyst_particles.ico"/>
+
+  <!-- Liquid Coolant-->
+  <item id="liquid_coolant" weight="2" type="resource" costs="310" icon="liquid_coolant.ico"/>
+
+</data>

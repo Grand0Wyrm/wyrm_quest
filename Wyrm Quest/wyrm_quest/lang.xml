@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+
+  <lang id="en_US">
+    <section id="item.names">
+      <text id="guilt">Guilt</text>
+      <text id="wyrm_hide">Wyrm Hide</text>
+      <text id="wyrmic_book">Book Of Wyrmic</text>
+      <text id="wyrm_armor">Wyrm Armor</text>
+      <text id="cocoon_shell">Royal Cocoon Shard</text>
+      <text id="wyrmic_blood">Wyrm Blood</text>
+      <text id="human_blood">Human Blood</text>
+      <text id="wyrm_bone">Wyrm Bones</text>
+      <text id="rad_blood">Radioactive Blood</text>
+      <text id="blood_shard">Crystalized Blood Shards</text>
+      <text id="amethyst_particles">Amethyst Particles</text>
+      <text id="liquid_coolant">Liquid Uranium Stabilizer</text>
+      <text id="crystal_blood">Crystallic Blood</text>
+
+
+
+
+    </section>
+    <section id="item.descriptions">
+      <text id="guilt">Maybe I should not have killed those innocent Wyrms..</text>
+      <text id="wyrm_hide">Wyrm Leather, Light but Durable.</text>
+      <text id="wyrmic_book">Speak like a Wyrm and Understand Wyrmic.</text>
+      <text id="wyrm_armor">The ground around it seems...different.</text>
+      <text id="cocoon_shell">Its so sturdy yet flexible, if only there were a way to make armour out of it..</text>
+      <text id="wyrmic_blood">The Blood of a Wyrm coursing through your Veins.</text>
+      <text id="human_blood">Ol' Reliable Human Blood, nothing special, yet.</text>
+      <text id="wyrm_bone">Some Wyrm Bones, There are blobs of Dragon Blood stuck to it.</text>
+      <text id="rad_blood">Who in their right mind would transfuse their blood with liquid uranium?</text>
+      <text id="crystal_blood">It refracts light incredibly well.</text>
+
+
+
+    </section>
+    <section id="quests">
+      <text id="enemy_wyrm">Slay Enemy Wyrms</text>
+      <text id="resource_help">Gathering Resources</text>
+      <text id="trust_issues">Friend Or Foe?</text>
+      <text id="talking_wyrm">Wyrm Speech</text>
+      <text id="more_food">Living Food</text>
+      <text id="wyrmic_armor">Wyrm Hide Armor</text>
+      <text id="redemption">Redemption Arc.</text>
+
+
+    </section>
+    <section id="quest.description">
+      <text id="enemy_wyrm">wants you to slay enemy wyrms to prove yourself an ally.</text>
+      <text id="resource_help">wants you, the Hives friend, to help gather Meat and Coal.</text>
+      <text id="trust_issues">is unsure if you are friend or foe, complete their request to show that you're a friend.</text>
+      <text id="talking_wyrm">offers to craft a spellbook capable of translating between Wyrms and Humans.</text>
+      <text id="more_food">asked you to bring a few livestock animals so that the new Queen may hatch.</text>
+      <text id="wyrmic_armor">offered to make you new armor using Wyrm Hide.</text>
+      <text id="redemption">Is it really bribery if you feel bad about it?.</text>
+
+
+    </section>
+    <section id="npc">
+      <text id="wyrmy2">Wise Wyrm</text>
+      <text id="wyrmy">Wise Wyrm</text>
+    </section>
+    <section id="wyrmy2">
+      <text id="introduce1">Eradicated You The Plant Monster Have.</text>
+      <text id="introduce2">I The Wise Wyrm Am.</text>
+      <text id="introduce3">Have Not Attacked The Queen You Have.</text>
+      <text id="introduce4">Defend The Hive You? Slay Enemy Wyrm? Prove Ally Yourself.</text>
+      <text id="wyrm_slain1">You Hive Defended?.</text>
+      <text id="wyrm_slain2">You Ally Hive.</text>
+      <text id="wyrm_slain3">You Hive Defended? Forth Go, Prove Ally.</text>
+      <text id="greetings">Hello Friend, You how Are? Good I Am, Good Hive Is.</text>
+      <text id="reward">It is not every day that a new queen is born, its scarcity creates immense value.</text>
+      <text id="redemption1">The price of forgiveness is not great, for a friend like you.</text>
+      <text id="redemption2">Thank you, your efforts continue to support the Hive.</text>
+      <text id="redemption3">E</text>
+
+
+
+    </section>
+    <section id="wyrmy">
+      <text id="trust_issues1">Murder Of Queen Are You...</text>
+      <text id="trust_issues2">But Banisher Of Icy Storm You Are Also.</text>
+      <text id="trust_issues3">Conflicted, Friend Or Foe? Help Hive You? Prove Friend..?</text>
+      <text id="trust_issues4">Help Collect Coal, Meat And Precious Shiny Gem?</text>
+      <text id="trust_issues5">Conflict Ceased, Friend You Are.</text>
+      <text id="trust_issues6">Me Job Have To Do Now, Secret I teach you.</text>
+      <text id="trust_issues8">*As the Wise Wyrm teaches you about the simple Wyrm anatomy, you feel confident in yourself to extract some more resources from the next Wyrm you slay.*</text>
+      <text id="trust_issues7">[font=drachenklaue]I Miss Queen, Will Raise Another Soon.[/font]</text>
+      <text id="resource_help1">I Collect Coal For Hive</text>
+      <text id="resource_help2">Help Collect Coal And Meat?</text>
+      <text id="resource_help3">Thank You For Help. Great Ally You Are.</text>
+      <text id="resource_help5">As reward I tell special secret.</text>
+      <text id="resource_help4">Hello Friend, Collect Meat And Coal Yet?.</text>
+      <text id="more_food1">Friend, there is something I must ask of you.</text>
+      <text id="more_food2">Her Majesty the new Queen requires more sustenence to hatch.</text>
+      <text id="more_food3">Live food, rather than already prepared, so please bring me the following.</text>
+      <text id="more_food4">You have my thanks Friend.</text>
+      <text id="more_food5">Come visit me afterwards in the Hive.</text>
+      <text id="more_food6">I will give you your reward then.</text>
+      <text id="more_food7">I'd wish the animals brought themselves to the queen as well, Friend.</text>
+    </section>
+    <section id="alchemist">
+      <text id="talking_wyrm1">You found a Wyrm capable of human speech but its not the best at it?</text>
+      <text id="talking_wyrm2">Imagine the things we could learn from such a smart wyrm about others of its kind and this world.</text>
+      <text id="talking_wyrm3">If you bring me the necessary materials I can make a spellbook capable of easing conversation with them.</text>
+      <text id="talking_wyrm3">If you bring me the necessary materials I might be able make a spellbook capable of easing conversation with them.</text>
+      <text id="talking_wyrm4">It worked! Here, try this [item=wyrmic_book] out next time when you talk to them.</text>
+      <text id="talking_wyrm5">Well what are you waiting for? The ingredients wont collect themselves.</text>
+      <text id="wyrm_armor1">Show me that [item=wyrm_hide] you aquired.</text>
+      <text id="wyrm_armor2">Its properties are rather interesting, As if its still alive.</text>
+      <text id="wyrm_armor3">Ive been suspecting the mining capabilities of a Wyrm originate from their hide.</text>
+      <text id="wyrm_armor4">Bring me the following and I might be able to make armor with it that will help you with mining.</text>
+      <text id="wyrm_armor5">Bring to me the materials if you want to increase your mining capabilites, until then I shall continue my research.</text>
+      <text id="wyrm_armor6">Wonderful!, now give me a moment..</text>
+      <text id="wyrm_armor7">A while later</text>
+      <text id="wyrm_armor8">It is done. After attempt and trial I have succeeded!.</text>
+      <text id="wyrm_armor9">This armor should cause the earth around you to soften, shortening the time it takes to break it down.</text>
+    </section>
+    <section id="wyrmic">
+      <text id="wyrm_death">Aargh!</text>
+      <text id="wyrm_capture">My freedom...</text>
+    </section>
+    <section id="actions">
+    		<text id="dissect">Dissect Corpse</text>
+    </section>
+    	<section id="structure.tooltip">
+          		<text id="Mutate">Mutate</text>
+      </section>
+    <section id="waring">
+		    <text id="remove_blood">Do you want to extract the {item}? It will be gone for good and you will have to re-transfuse it at the Mutation Cocoon if you want it back.</text>
+		    <text id="blood_transfusion_inhuman">The [color=770000]Mutation Cocoon[/color] cannot transfuse nonhumans.</text>
+
+    </section>
+      <section id="equipment">
+          <text id="blood">Blood</text>
+      </section>
+    </lang>
+</data>

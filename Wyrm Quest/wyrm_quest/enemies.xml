@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+<!-- Once you complete the resource gathering quest or trust issues wyrms leave behind their corpse for you to dissect. -->
+	<tile id="wyrm.corpse" sheet="wyrm_corpse.png" />
+<object id="wyrm.corpse" tile="wyrm.corpse" action="dissect" layer="item" networkRemove="false" projectileKillCollect="true">
+  <loot id="wyrm_hide" p="1"/>
+  <loot id="dragonblood" p="1"/>
+  <loot id="" p="2"/>
+  <operate>
+    <remove object="this" killer="player" modal="true" />
+  </operate>
+</object>
+
+<enemy id="wyrm" extends="wyrm">
+<onDeath>
+  <section if="getFlag('hide')">
+  <object id="wyrm.corpse" x="this.xPos/Tile.SIZE" y="this.yTile/Tile.SIZE"/>
+  </section>
+</onDeath>
+<loot id="wyrm_bone" count="2" p="1"/>
+<loot id="dragonblood" p="2"/>
+</enemy>
+
+
+<enemy id="steel_wyrm" extends="steel_wyrm">
+<loot id="liquid_coolant" count="1" p="1"/>
+<loot id="uranium" p="2"/>
+</enemy>
+
+<enemy id="magic_wyrm" extends="magic_wyrm">
+<loot id="amethyst_particles" count="2" p="1"/>
+<loot id="altar_gem" p="2"/>
+</enemy>
+
+
+	<tile id="bloodgem_wyrm" sheet="bloodgem_wyrm.png" x="0" y="0" />
+	<animation id="bloodgem_wyrm.idle" equals="single" />
+	<animation id="bloodgem_wyrm.walk" count="8" x="0" />
+	<animation id="bloodgem_wyrm.dig" count="4" x="8" />
+	<animation id="bloodgem_wyrm.attack" count="4" x="8" repeat="3" />
+	<animation id="bloodgem_wyrm.hit" count="1" length="3" x="12">
+		<frame x="0" y="0" length="5" />
+	</animation>
+	<enemy id="bloodgem_wyrm" tile="bloodgem_wyrm" health="52" defense="6" damage="32" type="wyrm" eatTile="magic1.stone2" speed="3" attack_sfx="magicwyrm_attack">
+		<loot id="blood_gem" count="2" p="3" />
+		<loot id="blood_shard" count="1" p="1" />
+		<sound id="death" value="magic_wyrm_death" />
+	</enemy>
+
+
+</data>

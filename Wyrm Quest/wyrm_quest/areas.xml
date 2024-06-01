@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+  <!-- Including the npc.xml file here to prevent annoying buggies -->
+    <include id="npcs.xml" child="init"/>
+    <include id="structures.xml" child="int"/>
+
+    <!-- Adds the Wise Wyrm to the wyrm hive if the queen is alive and the cultivator is dead, also replaces the wyrm queen with a friendly one -->
+   <area id="wyrm_hive" extends="wyrm_hive">
+     <onLoad>
+ 			<object id="wyrmy2" x="2" y="13" if="area.getObject('wyrmy2') == null && area.getObject('wyrm_queen') != null && player.questComplete('cultivator')"/>
+      <action if="area.getObject('wyrmy2') != null && area.getObject('wyrm_queen') != null">
+        area.removeObject(area.getObject('wyrm_queen'))
+      </action>
+    	<object id="friendly_queen" x="11" y="10" if="area.getObject('wyrmy2') != null && area.getObject('friendly_queen') == null"/>
+        <section if="area.getObject('friendly_queen') != null">
+            <structure id="wyrm_tunnel" x="1" y="1" if="area.getStructureById('wyrm_tunnel') == null">
+            <teleport area="wyrm_tunnels" x="48" y="48" />
+        </structure>
+      </section>
+      <section if="area.getObject(queen_cocoon) == null && player.questComplete('trust_issues') && !player.questComplete('trust_issues')">
+            <structure id="queen_cocoon" x="7" y="10"/>
+            <action if="player.questComplete('more_food') && area.getObject('queen_cocoon') != null && area.getObject('friendly_queen') == null">
+            area.removeObject(area.getObject('queen_cocoon'))
+              <object id="friendly_queen" x="11" y="10"/>
+            </action>
+      </section>
+    </onLoad>
+    </area>
+
+   <!-- Spawns the Wise Wyrm in the pre-mined line on magic1 if you either
+    complete its quest in the wyrm hive or have killed the storm, also prevents duplicates from spawning -->
+    <area id="magic1" extends="magic1">
+      <onLoad>
+      <section if="player.getKillCount('ice_boss') != 0 && area.getObject('wyrmy') == null">
+        <object id="wyrmy" x="71" y="10"/>
+      </section>
+      <section if="player.QuestComplete('enemy'_wyrm) && area.getObject('wyrmy') == null">
+        <object id="wyrmy" x="71" y="10"/>
+      </section>
+      </onLoad>
+    </area>
+
+
+    <area id="farming" extends="farming">
+      <onLoad>
+
+        <structure id="mutation_cocoon" x="57" y="-1"/>
+      </onLoad>
+    </area>
+
+    <area id="magic1" extends="magic1">
+    		<spawner id="bloodgem_wyrm" time="4000" count="5" fromX="1" toX="94" fromY="95" toY="145" tile="magic1.stone2" />
+    </area>
+
+
+</data>
